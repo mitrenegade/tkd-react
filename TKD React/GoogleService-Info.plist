@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>1032547098587-c3b5l5btc0981m6i9u204d8avhn9p28m.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1032547098587-c3b5l5btc0981m6i9u204d8avhn9p28m</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAPokNO-DZMoAUoRGT3laGL2elv5eyGWsU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1032547098587</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>io.renderapps.tkdreact</string>
+	<key>PROJECT_ID</key>
+	<string>tkdtimer</string>
+	<key>STORAGE_BUCKET</key>
+	<string>tkdtimer.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1032547098587:ios:74d163a51623d857</string>
+	<key>DATABASE_URL</key>
+	<string>https://tkdtimer.firebaseio.com</string>
+</dict>
+</plist>

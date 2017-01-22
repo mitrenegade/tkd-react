@@ -7,14 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FEA331080BC0B64C1E01BCE /* Pods_TKD_React.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC1FD04EB3E180B963118C3 /* Pods_TKD_React.framework */; };
 		8E4E10C91E2DA1BF00A6330D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4E10C81E2DA1BF00A6330D /* AppDelegate.swift */; };
 		8E4E10CB1E2DA1BF00A6330D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4E10CA1E2DA1BF00A6330D /* ViewController.swift */; };
 		8E4E10CE1E2DA1BF00A6330D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E4E10CC1E2DA1BF00A6330D /* Main.storyboard */; };
 		8E4E10D01E2DA1BF00A6330D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4E10CF1E2DA1BF00A6330D /* Assets.xcassets */; };
 		8E4E10D31E2DA1BF00A6330D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E4E10D11E2DA1BF00A6330D /* LaunchScreen.storyboard */; };
+		C182E95B1E35522F0035F328 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C182E95A1E35522F0035F328 /* GoogleService-Info.plist */; };
+		C182E95D1E3552600035F328 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C182E95C1E3552600035F328 /* Global.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6EC1FD04EB3E180B963118C3 /* Pods_TKD_React.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TKD_React.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		77044A700345D7F29BD79582 /* Pods-TKD React.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TKD React.release.xcconfig"; path = "Pods/Target Support Files/Pods-TKD React/Pods-TKD React.release.xcconfig"; sourceTree = "<group>"; };
 		8E4E10C51E2DA1BE00A6330D /* TKD React.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TKD React.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E4E10C81E2DA1BF00A6330D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E4E10CA1E2DA1BF00A6330D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +27,9 @@
 		8E4E10CF1E2DA1BF00A6330D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E4E10D21E2DA1BF00A6330D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8E4E10D41E2DA1BF00A6330D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC77EC6C5CE5EB092C0A60FB /* Pods-TKD React.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TKD React.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TKD React/Pods-TKD React.debug.xcconfig"; sourceTree = "<group>"; };
+		C182E95A1E35522F0035F328 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C182E95C1E3552600035F328 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +37,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FEA331080BC0B64C1E01BCE /* Pods_TKD_React.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2BF518A5A056D4C3A24BA429 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AC77EC6C5CE5EB092C0A60FB /* Pods-TKD React.debug.xcconfig */,
+				77044A700345D7F29BD79582 /* Pods-TKD React.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		8E4E10BC1E2DA1BE00A6330D = {
 			isa = PBXGroup;
 			children = (
 				8E4E10C71E2DA1BE00A6330D /* TKD React */,
 				8E4E10C61E2DA1BE00A6330D /* Products */,
+				2BF518A5A056D4C3A24BA429 /* Pods */,
+				BF4F816E9983FFE2BDEBED35 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,8 +80,18 @@
 				8E4E10CF1E2DA1BF00A6330D /* Assets.xcassets */,
 				8E4E10D11E2DA1BF00A6330D /* LaunchScreen.storyboard */,
 				8E4E10D41E2DA1BF00A6330D /* Info.plist */,
+				C182E95A1E35522F0035F328 /* GoogleService-Info.plist */,
+				C182E95C1E3552600035F328 /* Global.swift */,
 			);
 			path = "TKD React";
+			sourceTree = "<group>";
+		};
+		BF4F816E9983FFE2BDEBED35 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6EC1FD04EB3E180B963118C3 /* Pods_TKD_React.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +101,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8E4E10D71E2DA1BF00A6330D /* Build configuration list for PBXNativeTarget "TKD React" */;
 			buildPhases = (
+				865F91C8519F7D2101E6D5DF /* [CP] Check Pods Manifest.lock */,
 				8E4E10C11E2DA1BE00A6330D /* Sources */,
 				8E4E10C21E2DA1BE00A6330D /* Frameworks */,
 				8E4E10C31E2DA1BE00A6330D /* Resources */,
+				0BBDB63CF699D69737872E3A /* [CP] Embed Pods Frameworks */,
+				C5EB2606C01240B8FF6C5F42 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -96,6 +129,7 @@
 				TargetAttributes = {
 					8E4E10C41E2DA1BE00A6330D = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 28SGD9V9Q9;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -124,12 +158,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E4E10D31E2DA1BF00A6330D /* LaunchScreen.storyboard in Resources */,
+				C182E95B1E35522F0035F328 /* GoogleService-Info.plist in Resources */,
 				8E4E10D01E2DA1BF00A6330D /* Assets.xcassets in Resources */,
 				8E4E10CE1E2DA1BF00A6330D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0BBDB63CF699D69737872E3A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TKD React/Pods-TKD React-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		865F91C8519F7D2101E6D5DF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C5EB2606C01240B8FF6C5F42 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TKD React/Pods-TKD React-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8E4E10C11E2DA1BE00A6330D /* Sources */ = {
@@ -138,6 +221,7 @@
 			files = (
 				8E4E10CB1E2DA1BF00A6330D /* ViewController.swift in Sources */,
 				8E4E10C91E2DA1BF00A6330D /* AppDelegate.swift in Sources */,
+				C182E95D1E3552600035F328 /* Global.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,10 +340,12 @@
 		};
 		8E4E10D81E2DA1BF00A6330D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC77EC6C5CE5EB092C0A60FB /* Pods-TKD React.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 28SGD9V9Q9;
 				INFOPLIST_FILE = "TKD React/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.renderapps.tkdreact;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -269,10 +355,12 @@
 		};
 		8E4E10D91E2DA1BF00A6330D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77044A700345D7F29BD79582 /* Pods-TKD React.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 28SGD9V9Q9;
 				INFOPLIST_FILE = "TKD React/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.renderapps.tkdreact;
 				PRODUCT_NAME = "$(TARGET_NAME)";
