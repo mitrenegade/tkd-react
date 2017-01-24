@@ -31,8 +31,12 @@ class ViewController: UIViewController {
     
     var timeLine: [Int] = []
     
+    var sessionNumber = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        sessionNumber = Int(arc4random())
         
         //request microphone permission
         AVAudioSession.sharedInstance().requestRecordPermission () { allowed in
@@ -74,7 +78,7 @@ class ViewController: UIViewController {
         time = Date()
         
         
-        startBeeps(loops: loops, min: min, max: max)
+        startBeeps(sesNum: sessionNumber, loops: loops, min: min, max: max)
         
         startMotion()
         startRecording()
@@ -96,7 +100,7 @@ class ViewController: UIViewController {
         audioRecorder.record()
     }
     
-    func startBeeps(loops: Int, min: Int, max: Int) {
+    func startBeeps(sesNum: Int, loops: Int, min: Int, max: Int) {
         resetTimeLine(loops: loops, min: min, max: max)
         
         var x = 1
@@ -106,21 +110,27 @@ class ViewController: UIViewController {
                 
                 let sound = NSDataAsset(name: "tap-crisp")
                 
-                do {
-                    try self.audioPlayer = AVAudioPlayer(data: (sound?.data)!, fileTypeHint: AVFileTypeAIFF)
-                    self.audioPlayer.play()
-                } catch {
-                    print("could not play sound")
+                //check if number has changed, which would mean stop has been pressed
+                if sesNum == self.sessionNumber {
+                    do {
+                        try self.audioPlayer = AVAudioPlayer(data: (sound?.data)!, fileTypeHint: AVFileTypeAIFF)
+                        self.audioPlayer.play()
+                    } catch {
+                        print("could not play sound")
+                    }
+                    
+                    print("triggered beep #\(x) after \(delay) seconds")
+                    x += 1
+                    
+                    let d = Date()
+                    let df = DateFormatter()
+                    df.dateFormat = "y-MM-dd H:m:ss.SSSS"
+                    
+                    self.csvString.append("\(df.string(from: d)),,1\n")
+                } else {
+                    print("would have triggered beep #\(x) after \(delay) seconds, but has been stopped")
+                    x += 1
                 }
-                
-                print("triggered beep #\(x) after \(delay) seconds")
-                x += 1
-                
-                let d = Date()
-                let df = DateFormatter()
-                df.dateFormat = "y-MM-dd H:m:ss.SSSS"
-                
-                self.csvString.append("\(df.string(from: d)),,1\n")
             })
         }
     }
@@ -166,6 +176,9 @@ class ViewController: UIViewController {
     //Will stop actions but beeps will continue
     @IBAction func stop(_ sender: Any) {
         timeLine = []
+        
+        //reset session number to stop beeps
+        sessionNumber = Int(arc4random())
         
         motionKit.stopAccelerometerUpdates()
         motionKit.stopGyroUpdates()
