@@ -197,10 +197,10 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="stop:" destination="wF8-Rt-O8U" eventType="touchUpInside" id="Dba-X5-v8O"/>
+                                    <action selector="didClickButton:" destination="wF8-Rt-O8U" eventType="touchUpInside" id="kND-nA-1zC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIT-KD-K65">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIT-KD-K65">
                                 <rect key="frame" x="16" y="212" width="343" height="64"/>
                                 <color key="backgroundColor" red="0.58823529411764708" green="0.58823529411764708" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -219,7 +219,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpH-c4-syZ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpH-c4-syZ">
                                 <rect key="frame" x="16" y="362" width="343" height="64"/>
                                 <color key="backgroundColor" red="0.58823529409999997" green="0.58823529409999997" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -252,6 +252,11 @@
                             <constraint firstItem="hpH-c4-syZ" firstAttribute="top" secondItem="yyl-2M-jiT" secondAttribute="bottom" id="yX0-yQ-301"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="button" destination="p69-wz-cPg" id="4Ey-AP-1Ep"/>
+                        <outlet property="labelCount" destination="hpH-c4-syZ" id="6nK-Xc-vOi"/>
+                        <outlet property="labelTime" destination="KIT-KD-K65" id="ncK-Xb-AOw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fv1-nB-D0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

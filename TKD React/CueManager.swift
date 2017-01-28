@@ -14,10 +14,12 @@ class CueManager: NSObject {
     var audioPlayer:AVAudioPlayer!
     var isPlaying = false
     var loops: Int = 0
+    var elapsed: Int = 0
 
     func start() {
         isPlaying = true
         loops = SettingsManager.instance.numberOfCues
+        elapsed = 0
         let str = loops == -1 ? "infinite" : "\(loops)"
         print("*** CueManager starting with \(str) loops ***")
         self.tickAfter(seconds: self.delay())
@@ -42,6 +44,7 @@ class CueManager: NSObject {
             guard self.isPlaying else { return }
             guard self.loops != 0 else { return }
 
+            self.elapsed += 1
             let sound = NSDataAsset(name: "tap-crisp")
             do {
                 try self.audioPlayer = AVAudioPlayer(data: (sound?.data)!, fileTypeHint: AVFileTypeAIFF)
