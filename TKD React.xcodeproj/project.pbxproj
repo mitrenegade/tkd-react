@@ -16,6 +16,10 @@
 		8E5683791E3CE3D1000B6FCF /* MotionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5683781E3CE3D1000B6FCF /* MotionKit.swift */; };
 		8E56837E1E3CF010000B6FCF /* ReactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E56837D1E3CF010000B6FCF /* ReactViewController.swift */; };
 		8E5683801E3CF32D000B6FCF /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E56837F1E3CF32D000B6FCF /* SettingsManager.swift */; };
+		8E5683821E3CF4D6000B6FCF /* CueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5683811E3CF4D6000B6FCF /* CueManager.swift */; };
+		8E5683841E3CF4E2000B6FCF /* RecordingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5683831E3CF4E2000B6FCF /* RecordingManager.swift */; };
+		8E5683861E3CF4E9000B6FCF /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5683851E3CF4E9000B6FCF /* MotionManager.swift */; };
+		8E5683881E3CF84F000B6FCF /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5683871E3CF84F000B6FCF /* DataManager.swift */; };
 		C182E95B1E35522F0035F328 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C182E95A1E35522F0035F328 /* GoogleService-Info.plist */; };
 		C182E95D1E3552600035F328 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C182E95C1E3552600035F328 /* Global.swift */; };
 /* End PBXBuildFile section */
@@ -33,6 +37,10 @@
 		8E5683781E3CE3D1000B6FCF /* MotionKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionKit.swift; sourceTree = "<group>"; };
 		8E56837D1E3CF010000B6FCF /* ReactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactViewController.swift; sourceTree = "<group>"; };
 		8E56837F1E3CF32D000B6FCF /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		8E5683811E3CF4D6000B6FCF /* CueManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueManager.swift; sourceTree = "<group>"; };
+		8E5683831E3CF4E2000B6FCF /* RecordingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingManager.swift; sourceTree = "<group>"; };
+		8E5683851E3CF4E9000B6FCF /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
+		8E5683871E3CF84F000B6FCF /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		AC77EC6C5CE5EB092C0A60FB /* Pods-TKD React.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TKD React.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TKD React/Pods-TKD React.debug.xcconfig"; sourceTree = "<group>"; };
 		C182E95A1E35522F0035F328 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C182E95C1E3552600035F328 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
@@ -83,6 +91,10 @@
 				8E4E10C81E2DA1BF00A6330D /* AppDelegate.swift */,
 				8E4E10CC1E2DA1BF00A6330D /* Main.storyboard */,
 				8E56837D1E3CF010000B6FCF /* ReactViewController.swift */,
+				8E5683811E3CF4D6000B6FCF /* CueManager.swift */,
+				8E5683831E3CF4E2000B6FCF /* RecordingManager.swift */,
+				8E5683851E3CF4E9000B6FCF /* MotionManager.swift */,
+				8E5683871E3CF84F000B6FCF /* DataManager.swift */,
 				8E4E10CA1E2DA1BF00A6330D /* SettingsViewController.swift */,
 				8E56837F1E3CF32D000B6FCF /* SettingsManager.swift */,
 				8E5683781E3CE3D1000B6FCF /* MotionKit.swift */,
@@ -134,7 +146,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = "Bobby Ren";
+				ORGANIZATIONNAME = "RenderApps, LLC";
 				TargetAttributes = {
 					8E4E10C41E2DA1BE00A6330D = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -229,7 +241,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E5683791E3CE3D1000B6FCF /* MotionKit.swift in Sources */,
+				8E5683881E3CF84F000B6FCF /* DataManager.swift in Sources */,
+				8E5683841E3CF4E2000B6FCF /* RecordingManager.swift in Sources */,
+				8E5683821E3CF4D6000B6FCF /* CueManager.swift in Sources */,
 				8E4E10CB1E2DA1BF00A6330D /* SettingsViewController.swift in Sources */,
+				8E5683861E3CF4E9000B6FCF /* MotionManager.swift in Sources */,
 				8E5683801E3CF32D000B6FCF /* SettingsManager.swift in Sources */,
 				8E56837E1E3CF010000B6FCF /* ReactViewController.swift in Sources */,
 				8E4E10C91E2DA1BF00A6330D /* AppDelegate.swift in Sources */,
