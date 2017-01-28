@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MotionKit
 import AVFoundation
 import Firebase
 import FirebaseAuth

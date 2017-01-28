@@ -6,7 +6,6 @@ target 'TKD React' do
   use_frameworks!
 
   # Pods for TKD React
-  pod ‘MotionKit’ #will need to be updated to Swift 3: find code from one of the pull requests here https://github.com/MHaroonBaig/MotionKit/pulls
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
