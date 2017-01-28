@@ -39,11 +39,10 @@ class ReactViewController: UIViewController {
             }
         }
 
+        self.start()
     }
 
-    @IBAction func start(_ sender: Any) {
-        print("start")
-
+    func start() {
         // create CSV writer
         DataManager.sharedInstance.start()
 
@@ -58,7 +57,7 @@ class ReactViewController: UIViewController {
     }
     
     //Will stop actions but beeps will continue
-    @IBAction func stop(_ sender: Any) {
+    @IBAction func stop(_ sender: AnyObject) {
         cueManager.stop()
         recordingManager.stop()
         motionManager.stop()

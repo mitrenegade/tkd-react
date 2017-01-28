@@ -196,6 +196,9 @@
                                 <state key="normal" title="STOP">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="stop:" destination="wF8-Rt-O8U" eventType="touchUpInside" id="Dba-X5-v8O"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIT-KD-K65">
                                 <rect key="frame" x="16" y="212" width="343" height="64"/>

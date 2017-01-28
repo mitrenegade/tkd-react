@@ -12,6 +12,7 @@ class MotionManager: NSObject {
     let motionKit = MotionKit()
 
     func start() {
+        print("*** MotionManater starting ***")
         motionKit.getAccelerationFromDeviceMotion(0.01){
             (x, y, z) in
             

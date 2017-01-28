@@ -31,8 +31,8 @@ class RecordingManager: NSObject {
     }
 
     func start() {
-        
-        let fileName = "\(DataManager.sharedInstance.filenameBase).wav"
+        let string = DataManager.sharedInstance.filenameBase
+        let fileName = "\(string).wav"
         let path = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
         self.filepath = path
         audioRecorder = try! AVAudioRecorder(url: path, settings: [:])
@@ -40,6 +40,8 @@ class RecordingManager: NSObject {
         audioRecorder.isMeteringEnabled = true
         audioRecorder.prepareToRecord()
         audioRecorder.record()
+        
+        print("*** RecordingManager starting with url \(path) ***")
     }
     
     func stop() {

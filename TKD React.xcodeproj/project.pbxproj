@@ -93,12 +93,8 @@
 				8E4E10C81E2DA1BF00A6330D /* AppDelegate.swift */,
 				8E4E10CC1E2DA1BF00A6330D /* Main.storyboard */,
 				8E56837D1E3CF010000B6FCF /* ReactViewController.swift */,
-				8E5683811E3CF4D6000B6FCF /* CueManager.swift */,
-				8E5683831E3CF4E2000B6FCF /* RecordingManager.swift */,
-				8E5683851E3CF4E9000B6FCF /* MotionManager.swift */,
-				8E5683871E3CF84F000B6FCF /* DataManager.swift */,
+				8E56838B1E3D070C000B6FCF /* Managers */,
 				8E4E10CA1E2DA1BF00A6330D /* SettingsViewController.swift */,
-				8E56837F1E3CF32D000B6FCF /* SettingsManager.swift */,
 				8E5683781E3CE3D1000B6FCF /* MotionKit.swift */,
 				8E4E10CF1E2DA1BF00A6330D /* Assets.xcassets */,
 				8E4E10D11E2DA1BF00A6330D /* LaunchScreen.storyboard */,
@@ -108,6 +104,18 @@
 				8E5683891E3D0341000B6FCF /* Utils.swift */,
 			);
 			path = "TKD React";
+			sourceTree = "<group>";
+		};
+		8E56838B1E3D070C000B6FCF /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				8E5683811E3CF4D6000B6FCF /* CueManager.swift */,
+				8E5683831E3CF4E2000B6FCF /* RecordingManager.swift */,
+				8E5683851E3CF4E9000B6FCF /* MotionManager.swift */,
+				8E5683871E3CF84F000B6FCF /* DataManager.swift */,
+				8E56837F1E3CF32D000B6FCF /* SettingsManager.swift */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 		BF4F816E9983FFE2BDEBED35 /* Frameworks */ = {

@@ -11,8 +11,8 @@ import UIKit
 class DataManager: NSObject {
     static let sharedInstance = DataManager()
     
-    var csvString: String!
-    var filenameBase: String!
+    var csvString: String = ""
+    var filenameBase: String = ""
     
     let df = DateFormatter()
     var filepath: URL?
@@ -24,6 +24,13 @@ class DataManager: NSObject {
 
         let fileName = "\(filenameBase).csv"
         self.filepath = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
+        
+        if let path = self.filepath {
+            print("*** RecordingManager starting with url \(path) ***")
+        }
+        else {
+            print("*** RecordingManager starting with invalid url ***")
+        }
     }
     
     func logMotion(_ value: Double) {

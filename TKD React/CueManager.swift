@@ -18,6 +18,8 @@ class CueManager: NSObject {
     func start() {
         isPlaying = true
         loops = SettingsManager.instance.numberOfCues
+        let str = loops == -1 ? "infinite" : "\(loops)"
+        print("*** CueManager starting with \(str) loops ***")
         self.tickAfter(seconds: self.delay())
     }
     
@@ -34,11 +36,11 @@ class CueManager: NSObject {
     }
     
     private func tickAfter(seconds: Double) {
-        guard isPlaying else { return }
-        guard loops != 0 else { return }
-
         let when = DispatchTime.now() + seconds
         DispatchQueue.main.asyncAfter(deadline: when, execute: {
+
+            guard self.isPlaying else { return }
+            guard self.loops != 0 else { return }
 
             let sound = NSDataAsset(name: "tap-crisp")
             do {
@@ -53,7 +55,9 @@ class CueManager: NSObject {
             if self.loops != -1 {
                 self.loops -= 1
             }
-            self.tickAfter(seconds: self.delay())
+            let delay = self.delay()
+            self.tickAfter(seconds: delay)
+            print("TICK! ... delaying \(delay) seconds")
         })
     }
 
