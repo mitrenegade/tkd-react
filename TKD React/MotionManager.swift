@@ -11,7 +11,7 @@ import UIKit
 class MotionManager: NSObject {
     let motionKit = MotionKit()
 
-    func startMotion() {
+    func start() {
         motionKit.getAccelerationFromDeviceMotion(0.01){
             (x, y, z) in
             
@@ -22,11 +22,7 @@ class MotionManager: NSObject {
             
             let average = Double((absX + absY + absZ) / 3)
             
-            let d = Date()
-            let df = DateFormatter()
-            df.dateFormat = "y-MM-dd H:m:ss.SSSS"
-            let data = "\(df.string(from: d)),\(average)\n"
-            DataManager.sharedInstance.write(data)
+            DataManager.sharedInstance.logMotion(average)
         }
     }
 

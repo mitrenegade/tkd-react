@@ -15,8 +15,6 @@ class ReactViewController: UIViewController {
     @IBOutlet weak var labelTime: UILabel!
     @IBOutlet weak var labelCount: UILabel!
     
-    var sessionNumber = Int(arc4random())
-
     let cueManager = CueManager()
     let recordingManager = RecordingManager()
     let motionManager = MotionManager()
@@ -45,70 +43,61 @@ class ReactViewController: UIViewController {
 
     @IBAction func start(_ sender: Any) {
         print("start")
+
+        // create CSV writer
+        DataManager.sharedInstance.start()
+
+        // start recording motion
+        motionManager.start()
         
-        let loops = SettingsManager.instance.numberOfCues
-        let min = SettingsManager.instance.minInterval
-        let max = SettingsManager.instance.maxInterval
+        // start recording audio
+        recordingManager.start()
         
-        csvString = "Time,Motion,Beep\n"
-        time = Date()
-        
-        cueManager.startBeeps(sesNum: sessionNumber, loops: loops, min: min, max: max)
-        
-        motionManager.startMotion()
-        recordingManager.startRecording()
-        
+        // start cue timer
+        cueManager.start()
     }
     
     //Will stop actions but beeps will continue
     @IBAction func stop(_ sender: Any) {
-        
-        //reset session number to stop beeps
-        sessionNumber = Int(arc4random())
-                
         cueManager.stop()
         recordingManager.stop()
+        motionManager.stop()
         
+        DataManager.sharedInstance.stop()
         
-        let df = DateFormatter()
-        df.dateFormat = "y-MM-dd H:m"
-        
-        let fileName = "\(df.string(from: time)).csv"
-        let path = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
-        
-        let fileName2 = "\(df.string(from: time)).wav"
-        let path2 = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName2)
-        
-        //activity sheet
-        do {
-            try csvString.write(to: path, atomically: true, encoding: String.Encoding.utf8)
-            
-            let vc = UIActivityViewController(activityItems: [path, path2], applicationActivities: [])
-            
-            vc.excludedActivityTypes = [
-                UIActivityType.assignToContact,
-                UIActivityType.saveToCameraRoll,
-                UIActivityType.postToFlickr,
-                UIActivityType.postToVimeo,
-                UIActivityType.postToTencentWeibo,
-                UIActivityType.postToTwitter,
-                UIActivityType.postToFacebook,
-                //UIActivityType.openInIBooks
-            ]
-            present(vc, animated: true, completion: nil)
-            
-        } catch {
-            print("Failed to create file")
-            print("\(error)")
+        guard let dataPath = DataManager.sharedInstance.filepath else {
+            self.simpleAlert("Invalid data path", message: "Could not load path for data")
+            return
+        }
+        guard let audioPath = recordingManager.filepath else {
+            self.simpleAlert("Invalid audio path", message: "Could not load path for audio")
+            return
         }
         
+        let vc = UIActivityViewController(activityItems: [dataPath, audioPath], applicationActivities: [])
+        
+        vc.excludedActivityTypes = [
+            UIActivityType.assignToContact,
+            UIActivityType.saveToCameraRoll,
+            UIActivityType.postToFlickr,
+            UIActivityType.postToVimeo,
+            UIActivityType.postToTencentWeibo,
+            UIActivityType.postToTwitter,
+            UIActivityType.postToFacebook,
+            //UIActivityType.openInIBooks
+        ]
+        present(vc, animated: true, completion: nil)
+
         //Firebase
+        let csvString = DataManager.sharedInstance.csvString
+        let filenameBase = DataManager.sharedInstance.filenameBase
+        
         let  sessionRef = ref.child("sessions").childByAutoId()
         sessionRef.child("Motion").setValue(csvString)
         
-        let csvRef = storageRef.child("\(df.string(from: time)).csv")
+        let csvRef = storageRef.child("\(filenameBase).csv")
         
-        _ = csvRef.putFile(path, metadata: nil) { metadata, error in
+        _ = csvRef.putFile(dataPath, metadata: nil) { metadata, error in
             if let error = error {
                 print(error)
             } else {
@@ -118,9 +107,9 @@ class ReactViewController: UIViewController {
             }
         }
         
-        let audioRef = storageRef.child("\(df.string(from: time)).wav")
+        let audioRef = storageRef.child("\(filenameBase).wav")
         
-        _ = audioRef.putFile(path2, metadata: nil) { metadata, error in
+        _ = audioRef.putFile(audioPath, metadata: nil) { metadata, error in
             if let error = error {
                 print(error)
             } else {
@@ -129,6 +118,5 @@ class ReactViewController: UIViewController {
                 sessionRef.child("audioLink").setValue("\(downloadURL!)")
             }
         }
-        
     }
 }

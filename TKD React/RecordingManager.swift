@@ -12,8 +12,8 @@ import AVFoundation
 class RecordingManager: NSObject {
 
     var audioRecorder:AVAudioRecorder!
-    var audioPlayer:AVAudioPlayer!
-
+    var filepath: URL?
+    
     override init() {
         AVAudioSession.sharedInstance().requestRecordPermission () { allowed in
             if allowed {
@@ -30,12 +30,11 @@ class RecordingManager: NSObject {
         }
     }
 
-    func startRecording() {
+    func start() {
         
-        let df = DateFormatter()
-        df.dateFormat = "y-MM-dd H:m"
-        let fileName = "\(df.string(from: NSDate())).wav"
+        let fileName = "\(DataManager.sharedInstance.filenameBase).wav"
         let path = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
+        self.filepath = path
         audioRecorder = try! AVAudioRecorder(url: path, settings: [:])
         
         audioRecorder.isMeteringEnabled = true
