@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bRN-CD-mTp">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TKD_React" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SettingsViewController" customModule="TKD_React" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -110,6 +109,153 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="769" y="53"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="jMJ-9U-3Wg">
+            <objects>
+                <viewController id="bRN-CD-mTp" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bfD-mA-2PM"/>
+                        <viewControllerLayoutGuide type="bottom" id="1xz-hS-dz4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Uyh-VI-KuW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tkd-silouette" translatesAutoresizingMaskIntoConstraints="NO" id="cXc-SS-Ixh">
+                                <rect key="frame" x="0.0" y="102" width="375" height="485"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n4Y-Hn-Bgp">
+                                <rect key="frame" x="16" y="595" width="343" height="64"/>
+                                <color key="backgroundColor" red="0.92156862750000001" green="0.49019607840000001" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="50"/>
+                                <state key="normal" title="START">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="wF8-Rt-O8U" kind="show" id="fFp-EC-iHh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="n4Y-Hn-Bgp" secondAttribute="trailing" constant="16" id="6Z4-fK-3of"/>
+                            <constraint firstItem="n4Y-Hn-Bgp" firstAttribute="leading" secondItem="Uyh-VI-KuW" secondAttribute="leading" constant="16" id="BCm-0J-IWJ"/>
+                            <constraint firstAttribute="trailing" secondItem="cXc-SS-Ixh" secondAttribute="trailing" id="Bfb-ge-HBW"/>
+                            <constraint firstItem="1xz-hS-dz4" firstAttribute="top" secondItem="n4Y-Hn-Bgp" secondAttribute="bottom" constant="8" id="dmR-Sr-mBC"/>
+                            <constraint firstItem="cXc-SS-Ixh" firstAttribute="leading" secondItem="Uyh-VI-KuW" secondAttribute="leading" id="kci-0Y-nTL"/>
+                            <constraint firstItem="1xz-hS-dz4" firstAttribute="top" secondItem="cXc-SS-Ixh" secondAttribute="bottom" constant="80" id="nyr-v8-IR0"/>
+                            <constraint firstItem="cXc-SS-Ixh" firstAttribute="top" secondItem="Uyh-VI-KuW" secondAttribute="top" constant="102" id="oss-mc-HS1"/>
+                            <constraint firstItem="n4Y-Hn-Bgp" firstAttribute="top" secondItem="cXc-SS-Ixh" secondAttribute="bottom" constant="8" id="raH-gP-p0E"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ecQ-kA-h9L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-647.20000000000005" y="52.623688155922046"/>
+        </scene>
+        <!--React View Controller-->
+        <scene sceneID="Uid-ap-aqX">
+            <objects>
+                <viewController id="wF8-Rt-O8U" customClass="ReactViewController" customModule="TKD_React" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PNy-bb-W65"/>
+                        <viewControllerLayoutGuide type="bottom" id="JjW-ou-1Ih"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rlu-6l-S7H">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REACT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="TDO-Dx-wvM">
+                                <rect key="frame" x="0.0" y="28" width="375" height="118"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="118" id="DqQ-Fp-fI7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="50"/>
+                                <color key="textColor" red="0.92156862750000001" green="0.49019607840000001" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSv-Tv-zOM">
+                                <rect key="frame" x="16" y="166" width="343" height="46"/>
+                                <color key="backgroundColor" red="0.76470588235294112" green="0.76470588235294112" blue="0.76470588235294112" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="ZHT-84-cou"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p69-wz-cPg">
+                                <rect key="frame" x="16" y="595" width="343" height="64"/>
+                                <color key="backgroundColor" red="0.92156862750000001" green="0.49019607840000001" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="5g5-av-l4J"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="50"/>
+                                <state key="normal" title="STOP">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIT-KD-K65">
+                                <rect key="frame" x="16" y="212" width="343" height="64"/>
+                                <color key="backgroundColor" red="0.58823529411764708" green="0.58823529411764708" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="QTj-z3-bHY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="35"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Cues" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yyl-2M-jiT">
+                                <rect key="frame" x="16" y="316" width="343" height="46"/>
+                                <color key="backgroundColor" red="0.76470588240000004" green="0.76470588240000004" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="faT-kp-RZY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpH-c4-syZ">
+                                <rect key="frame" x="16" y="362" width="343" height="64"/>
+                                <color key="backgroundColor" red="0.58823529409999997" green="0.58823529409999997" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="4oh-GM-ACi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="35"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KIT-KD-K65" firstAttribute="trailing" secondItem="rlu-6l-S7H" secondAttribute="trailingMargin" id="2K9-sk-qRY"/>
+                            <constraint firstItem="CSv-Tv-zOM" firstAttribute="top" secondItem="TDO-Dx-wvM" secondAttribute="bottom" constant="20" id="2Pc-K2-oTf"/>
+                            <constraint firstItem="p69-wz-cPg" firstAttribute="leading" secondItem="rlu-6l-S7H" secondAttribute="leading" constant="16" id="AUl-ix-dPR"/>
+                            <constraint firstItem="hpH-c4-syZ" firstAttribute="trailing" secondItem="rlu-6l-S7H" secondAttribute="trailingMargin" id="BoE-Mv-mL0"/>
+                            <constraint firstItem="hpH-c4-syZ" firstAttribute="leading" secondItem="rlu-6l-S7H" secondAttribute="leadingMargin" id="F0Y-AF-RDg"/>
+                            <constraint firstItem="yyl-2M-jiT" firstAttribute="trailing" secondItem="rlu-6l-S7H" secondAttribute="trailingMargin" id="FQE-gi-FoY"/>
+                            <constraint firstItem="yyl-2M-jiT" firstAttribute="leading" secondItem="rlu-6l-S7H" secondAttribute="leadingMargin" id="HMQ-Ld-MY2"/>
+                            <constraint firstItem="TDO-Dx-wvM" firstAttribute="top" secondItem="PNy-bb-W65" secondAttribute="bottom" constant="8" id="LAK-Im-E5k"/>
+                            <constraint firstItem="CSv-Tv-zOM" firstAttribute="leading" secondItem="rlu-6l-S7H" secondAttribute="leadingMargin" id="O92-7g-cGz"/>
+                            <constraint firstItem="hpH-c4-syZ" firstAttribute="top" secondItem="yyl-2M-jiT" secondAttribute="bottom" id="PRv-eH-XrU"/>
+                            <constraint firstAttribute="trailing" secondItem="TDO-Dx-wvM" secondAttribute="trailing" id="RKt-ZY-ydb"/>
+                            <constraint firstAttribute="trailing" secondItem="p69-wz-cPg" secondAttribute="trailing" constant="16" id="UtY-Tg-Lr9"/>
+                            <constraint firstItem="JjW-ou-1Ih" firstAttribute="top" secondItem="p69-wz-cPg" secondAttribute="bottom" constant="8" id="X5g-D2-xc7"/>
+                            <constraint firstItem="KIT-KD-K65" firstAttribute="leading" secondItem="rlu-6l-S7H" secondAttribute="leadingMargin" id="etn-3V-6NZ"/>
+                            <constraint firstItem="yyl-2M-jiT" firstAttribute="top" secondItem="KIT-KD-K65" secondAttribute="bottom" constant="40" id="jcl-eB-iKK"/>
+                            <constraint firstItem="CSv-Tv-zOM" firstAttribute="trailing" secondItem="rlu-6l-S7H" secondAttribute="trailingMargin" id="n10-Ky-Mjg"/>
+                            <constraint firstItem="KIT-KD-K65" firstAttribute="top" secondItem="CSv-Tv-zOM" secondAttribute="bottom" id="tmS-MI-KcA"/>
+                            <constraint firstItem="TDO-Dx-wvM" firstAttribute="leading" secondItem="rlu-6l-S7H" secondAttribute="leading" id="wpp-Rq-d2h"/>
+                            <constraint firstItem="hpH-c4-syZ" firstAttribute="top" secondItem="yyl-2M-jiT" secondAttribute="bottom" id="yX0-yQ-301"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fv1-nB-D0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="64.799999999999997" y="52.623688155922046"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tkd-silouette" width="1170" height="1481"/>
+    </resources>
 </document>

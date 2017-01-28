@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
+//  ReactViewController.swift
 //  TKD React
 //
-//  Created by Bobby Ren on 1/16/17.
+//  Created by Bobby Ren on 1/28/17.
 //  Copyright © 2017 Bobby Ren. All rights reserved.
 //
 
@@ -11,18 +11,15 @@ import AVFoundation
 import Firebase
 import FirebaseAuth
 
-class ViewController: UIViewController {
-    
-    @IBOutlet var tfBeeps: UITextField!
-    @IBOutlet var tfMin: UITextField!
-    @IBOutlet var tfMax: UITextField!
-    
+class ReactViewController: UIViewController {
+
+    @IBOutlet weak var labelTime: UILabel!
+    @IBOutlet weak var labelCount: UILabel!
+
     let motionKit = MotionKit()
-    
+
     var audioRecorder:AVAudioRecorder!
     var audioPlayer:AVAudioPlayer!
-    
-    let session = AVAudioSession.sharedInstance()
     
     var csvString = "Time,Motion,Beep\n"
     
@@ -30,13 +27,12 @@ class ViewController: UIViewController {
     
     var timeLine: [Int] = []
     
-    var sessionNumber = 0
-    
+    var sessionNumber = Int(arc4random())
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        sessionNumber = Int(arc4random())
-        
+
+        // Do any additional setup after loading the view.
         //request microphone permission
         AVAudioSession.sharedInstance().requestRecordPermission () { allowed in
             if allowed {
@@ -45,9 +41,10 @@ class ViewController: UIViewController {
                 // User denied microphone
             }
         }
-        
+
         //setup to play sound while recording audio
         do {
+            let session = AVAudioSession.sharedInstance()
             try! session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
         }
         
@@ -64,14 +61,15 @@ class ViewController: UIViewController {
                 print("JMD: Anonymous user created with uid: " + user!.uid)
             }
         }
+
     }
-    
+
     @IBAction func start(_ sender: Any) {
         print("start")
         
-        guard let loops = Int(tfBeeps.text!), let min = Int(tfMin.text!), let max = Int(tfMax.text!) else {
-            return
-        }
+        let loops = SettingsManager.instance.numberOfCues
+        let min = SettingsManager.instance.minInterval
+        let max = SettingsManager.instance.maxInterval
         
         csvString = "Time,Motion,Beep\n"
         time = Date()
@@ -186,6 +184,8 @@ class ViewController: UIViewController {
         
         audioRecorder.stop()
         
+        
+        
         let df = DateFormatter()
         df.dateFormat = "y-MM-dd H:m"
         
@@ -247,13 +247,4 @@ class ViewController: UIViewController {
         }
         
     }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
 }
-
