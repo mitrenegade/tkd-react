@@ -12,6 +12,6 @@ class SettingsManager: NSObject {
     static let instance = SettingsManager()
     
     var numberOfCues = -1
-    var minInterval = 1
+    var minInterval = 5
     var maxInterval = 5
 }

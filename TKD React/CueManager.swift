@@ -52,7 +52,7 @@ class CueManager: NSObject {
             } catch {
                 print("could not play sound")
             }
-            DataManager.sharedInstance.logCue()
+            //DataManager.sharedInstance.logCue()
             
             // repeat
             if self.loops != -1 {

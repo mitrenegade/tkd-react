@@ -21,6 +21,7 @@ class ReactViewController: UIViewController {
     
     var timer: Timer?
     var startTime: Date?
+    var paused: Bool = false
     
     @IBOutlet weak var button: UIButton!
     
@@ -52,7 +53,12 @@ class ReactViewController: UIViewController {
             self.stop()
         }
         else {
-            self.start()
+            if paused {
+                self.showOptions()
+            }
+            else {
+                self.start()
+            }
         }
     }
 
@@ -98,6 +104,12 @@ class ReactViewController: UIViewController {
         self.labelCount.text = "\(self.cueManager.elapsed)"
     }
     
+    func reset() {
+        self.button.setTitle("START", for: .normal)
+        self.labelTime.text = "0"
+        self.paused = false
+    }
+    
     func stop() {
         self.timer?.invalidate()
         self.timer = nil
@@ -108,6 +120,37 @@ class ReactViewController: UIViewController {
         
         DataManager.sharedInstance.stop()
         
+        paused = true
+        self.button.setTitle("OPTIONS", for: .normal)
+        
+        self.showOptions()
+    }
+    
+    func showOptions() {
+        let alert = UIAlertController(title: "Session ended", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Save and send data", style: .default, handler: { (action) in
+            // continue
+            self.saveData(completion: { (success, paths) in
+                if success {
+                    self.sendData(paths: paths)
+                }
+                else {
+                    self.simpleAlert("Error uploading data", message: "Please click PAUSED button to try again")
+                }
+            })
+        }))
+        alert.addAction(UIAlertAction(title: "Discard session", style: .default, handler: { (action) in
+            // discard
+            self.reset()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
+            // return to session, but not unpause
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func saveData(completion: @escaping ((Bool, [URL])->Void)) {
+    
         guard let dataPath = DataManager.sharedInstance.filepath else {
             self.simpleAlert("Invalid data path", message: "Could not load path for data")
             return
@@ -117,19 +160,8 @@ class ReactViewController: UIViewController {
             return
         }
         
-        let vc = UIActivityViewController(activityItems: [dataPath, audioPath], applicationActivities: [])
-        
-        vc.excludedActivityTypes = [
-            UIActivityType.assignToContact,
-            UIActivityType.saveToCameraRoll,
-            UIActivityType.postToFlickr,
-            UIActivityType.postToVimeo,
-            UIActivityType.postToTencentWeibo,
-            UIActivityType.postToTwitter,
-            UIActivityType.postToFacebook,
-            //UIActivityType.openInIBooks
-        ]
-        present(vc, animated: true, completion: nil)
+        var successCount = 0
+        var errorCount = 0
 
         //Firebase
         let csvString = DataManager.sharedInstance.csvString
@@ -147,6 +179,10 @@ class ReactViewController: UIViewController {
                 // Metadata contains file metadata such as size, content-type, and download URL.
                 let downloadURL = metadata!.downloadURL()
                 sessionRef.child("csvLink").setValue("\(downloadURL!)")
+                successCount += 1
+                if successCount == 2 {
+                    completion(true, [dataPath, audioPath])
+                }
             }
         }
         
@@ -159,9 +195,29 @@ class ReactViewController: UIViewController {
                 // Metadata contains file metadata such as size, content-type, and download URL.
                 let downloadURL = metadata!.downloadURL()
                 sessionRef.child("audioLink").setValue("\(downloadURL!)")
+                successCount += 1
+                if successCount == 2 {
+                    completion(true, [dataPath, audioPath])
+                }
             }
         }
         
-        self.button.setTitle("START", for: .normal)
+    }
+    
+    func sendData(paths: [URL]) {
+        let vc = UIActivityViewController(activityItems: paths, applicationActivities: [])
+        
+        vc.excludedActivityTypes = [
+            UIActivityType.assignToContact,
+            UIActivityType.saveToCameraRoll,
+            UIActivityType.postToFlickr,
+            UIActivityType.postToVimeo,
+            UIActivityType.postToTencentWeibo,
+            UIActivityType.postToTwitter,
+            UIActivityType.postToFacebook,
+            //UIActivityType.openInIBooks
+        ]
+        present(vc, animated: true, completion: nil)
+
     }
 }
