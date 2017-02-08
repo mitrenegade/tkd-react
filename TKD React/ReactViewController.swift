@@ -110,6 +110,9 @@ class ReactViewController: UIViewController {
         self.button.setTitle("START", for: .normal)
         self.labelTime.text = "0"
         self.paused = false
+        
+        self.cueManager.elapsed = 0
+        self.labelCount.text = "\(self.cueManager.elapsed)"
     }
     
     func stop() {
