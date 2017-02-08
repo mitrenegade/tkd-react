@@ -63,7 +63,6 @@ class ReactViewController: UIViewController {
     }
 
     func start() {
-        startTime = Date()
         if #available(iOS 10.0, *) {
             self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (timer) in
                 self.refresh()
@@ -72,7 +71,6 @@ class ReactViewController: UIViewController {
             // Fallback on earlier versions
             self.timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(refresh), userInfo: nil, repeats: true)
         }
-        self.timer?.fire()
         
         // create CSV writer
         DataManager.sharedInstance.start()
@@ -85,7 +83,11 @@ class ReactViewController: UIViewController {
         
         // start cue timer
         cueManager.start()
-        
+
+        // start timer
+        startTime = Date()
+        self.timer?.fire()
+
         self.button.setTitle("STOP", for: .normal)
     }
     
