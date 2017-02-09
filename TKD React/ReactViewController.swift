@@ -90,6 +90,7 @@ class ReactViewController: UIViewController {
         cueManager.start()
 
         // start timer
+        self.labelTime.textAlignment = .left // to eliminate jitter
         startTime = Date()
         self.timer?.fire()
 
@@ -114,6 +115,7 @@ class ReactViewController: UIViewController {
     func reset() {
         self.button.setTitle("START", for: .normal)
         self.labelTime.text = "0"
+        self.labelTime.textAlignment = .center // number is now 0
         self.paused = false
         self.saved = false
         
