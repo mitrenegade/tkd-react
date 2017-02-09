@@ -25,6 +25,7 @@ class ReactViewController: UIViewController {
     var saved: Bool = false
     
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var savingOverlay: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -153,7 +154,9 @@ class ReactViewController: UIViewController {
                 self.sendData(paths: paths)
             }
             else {
+                self.savingOverlay.isHidden = false
                 self.saveData(completion: { (success, paths) in
+                    self.savingOverlay.isHidden = true
                     if success {
                         self.sendData(paths: paths)
                         self.saved = true
