@@ -183,12 +183,16 @@ class ReactViewController: UIViewController {
         _ = csvRef.putFile(dataPath, metadata: nil) { metadata, error in
             if let error = error {
                 print(error)
+                errorCount += 1
+                if successCount + errorCount == 2 {
+                    completion(false, [dataPath, audioPath])
+                }
             } else {
                 // Metadata contains file metadata such as size, content-type, and download URL.
                 let downloadURL = metadata!.downloadURL()
                 sessionRef.child("csvLink").setValue("\(downloadURL!)")
                 successCount += 1
-                if successCount == 2 {
+                if successCount + errorCount == 2 {
                     completion(true, [dataPath, audioPath])
                 }
             }
@@ -199,12 +203,15 @@ class ReactViewController: UIViewController {
         _ = audioRef.putFile(audioPath, metadata: nil) { metadata, error in
             if let error = error {
                 print(error)
+                if successCount + errorCount == 2 {
+                    completion(false, [dataPath, audioPath])
+                }
             } else {
                 // Metadata contains file metadata such as size, content-type, and download URL.
                 let downloadURL = metadata!.downloadURL()
                 sessionRef.child("audioLink").setValue("\(downloadURL!)")
                 successCount += 1
-                if successCount == 2 {
+                if successCount + errorCount == 2 {
                     completion(true, [dataPath, audioPath])
                 }
             }
