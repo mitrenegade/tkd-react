@@ -22,6 +22,7 @@ class ReactViewController: UIViewController {
     var timer: Timer?
     var startTime: Date?
     var paused: Bool = false
+    var saved: Bool = false
     
     @IBOutlet weak var button: UIButton!
     
@@ -113,6 +114,7 @@ class ReactViewController: UIViewController {
         self.button.setTitle("START", for: .normal)
         self.labelTime.text = "0"
         self.paused = false
+        self.saved = false
         
         self.cueManager.elapsed = 0
         self.labelCount.text = "\(self.cueManager.elapsed)"
@@ -137,15 +139,30 @@ class ReactViewController: UIViewController {
     func showOptions() {
         let alert = UIAlertController(title: "Session ended", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Save and send data", style: .default, handler: { (action) in
-            // continue
-            self.saveData(completion: { (success, paths) in
-                if success {
-                    self.sendData(paths: paths)
+            if self.saved {
+                guard let dataPath = DataManager.sharedInstance.filepath else {
+                    self.simpleAlert("Invalid data path", message: "Could not load path for data")
+                    return
                 }
-                else {
-                    self.simpleAlert("Error uploading data", message: "Please click PAUSED button to try again")
+                guard let audioPath = self.recordingManager.filepath else {
+                    self.simpleAlert("Invalid audio path", message: "Could not load path for audio")
+                    return
                 }
-            })
+                
+                let paths = [dataPath, audioPath]
+                self.sendData(paths: paths)
+            }
+            else {
+                self.saveData(completion: { (success, paths) in
+                    if success {
+                        self.sendData(paths: paths)
+                        self.saved = true
+                    }
+                    else {
+                        self.simpleAlert("Error uploading data", message: "Please click PAUSED button to try again")
+                    }
+                })
+            }
         }))
         alert.addAction(UIAlertAction(title: "Discard session", style: .default, handler: { (action) in
             // discard
