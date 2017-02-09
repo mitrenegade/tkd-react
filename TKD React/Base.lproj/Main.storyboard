@@ -200,15 +200,22 @@
                                     <action selector="didClickButton:" destination="wF8-Rt-O8U" eventType="touchUpInside" id="kND-nA-1zC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIT-KD-K65">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="98n-ZM-kLg">
                                 <rect key="frame" x="16" y="212" width="343" height="64"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="99:99:99" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIT-KD-K65">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="64"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="35"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" red="0.58823529411764708" green="0.58823529411764708" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="QTj-z3-bHY"/>
+                                    <constraint firstAttribute="height" constant="64" id="pkl-bj-Ycx"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="35"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Cues" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yyl-2M-jiT">
                                 <rect key="frame" x="16" y="316" width="343" height="46"/>
                                 <color key="backgroundColor" red="0.76470588240000004" green="0.76470588240000004" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -231,7 +238,6 @@
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="KIT-KD-K65" firstAttribute="trailing" secondItem="rlu-6l-S7H" secondAttribute="trailingMargin" id="2K9-sk-qRY"/>
                             <constraint firstItem="CSv-Tv-zOM" firstAttribute="top" secondItem="TDO-Dx-wvM" secondAttribute="bottom" constant="20" id="2Pc-K2-oTf"/>
                             <constraint firstItem="p69-wz-cPg" firstAttribute="leading" secondItem="rlu-6l-S7H" secondAttribute="leading" constant="16" id="AUl-ix-dPR"/>
                             <constraint firstItem="hpH-c4-syZ" firstAttribute="trailing" secondItem="rlu-6l-S7H" secondAttribute="trailingMargin" id="BoE-Mv-mL0"/>
@@ -239,15 +245,16 @@
                             <constraint firstItem="yyl-2M-jiT" firstAttribute="trailing" secondItem="rlu-6l-S7H" secondAttribute="trailingMargin" id="FQE-gi-FoY"/>
                             <constraint firstItem="yyl-2M-jiT" firstAttribute="leading" secondItem="rlu-6l-S7H" secondAttribute="leadingMargin" id="HMQ-Ld-MY2"/>
                             <constraint firstItem="TDO-Dx-wvM" firstAttribute="top" secondItem="PNy-bb-W65" secondAttribute="bottom" constant="8" id="LAK-Im-E5k"/>
+                            <constraint firstItem="98n-ZM-kLg" firstAttribute="leading" secondItem="rlu-6l-S7H" secondAttribute="leadingMargin" id="Lwq-hZ-6W6"/>
+                            <constraint firstItem="98n-ZM-kLg" firstAttribute="trailing" secondItem="rlu-6l-S7H" secondAttribute="trailingMargin" id="NpC-3a-uc9"/>
                             <constraint firstItem="CSv-Tv-zOM" firstAttribute="leading" secondItem="rlu-6l-S7H" secondAttribute="leadingMargin" id="O92-7g-cGz"/>
                             <constraint firstItem="hpH-c4-syZ" firstAttribute="top" secondItem="yyl-2M-jiT" secondAttribute="bottom" id="PRv-eH-XrU"/>
                             <constraint firstAttribute="trailing" secondItem="TDO-Dx-wvM" secondAttribute="trailing" id="RKt-ZY-ydb"/>
                             <constraint firstAttribute="trailing" secondItem="p69-wz-cPg" secondAttribute="trailing" constant="16" id="UtY-Tg-Lr9"/>
                             <constraint firstItem="JjW-ou-1Ih" firstAttribute="top" secondItem="p69-wz-cPg" secondAttribute="bottom" constant="8" id="X5g-D2-xc7"/>
-                            <constraint firstItem="KIT-KD-K65" firstAttribute="leading" secondItem="rlu-6l-S7H" secondAttribute="leadingMargin" id="etn-3V-6NZ"/>
-                            <constraint firstItem="yyl-2M-jiT" firstAttribute="top" secondItem="KIT-KD-K65" secondAttribute="bottom" constant="40" id="jcl-eB-iKK"/>
+                            <constraint firstItem="yyl-2M-jiT" firstAttribute="top" secondItem="98n-ZM-kLg" secondAttribute="bottom" constant="40" id="YnB-BO-HFh"/>
+                            <constraint firstItem="98n-ZM-kLg" firstAttribute="top" secondItem="CSv-Tv-zOM" secondAttribute="bottom" id="crd-WJ-HWA"/>
                             <constraint firstItem="CSv-Tv-zOM" firstAttribute="trailing" secondItem="rlu-6l-S7H" secondAttribute="trailingMargin" id="n10-Ky-Mjg"/>
-                            <constraint firstItem="KIT-KD-K65" firstAttribute="top" secondItem="CSv-Tv-zOM" secondAttribute="bottom" id="tmS-MI-KcA"/>
                             <constraint firstItem="TDO-Dx-wvM" firstAttribute="leading" secondItem="rlu-6l-S7H" secondAttribute="leading" id="wpp-Rq-d2h"/>
                             <constraint firstItem="hpH-c4-syZ" firstAttribute="top" secondItem="yyl-2M-jiT" secondAttribute="bottom" id="yX0-yQ-301"/>
                         </constraints>

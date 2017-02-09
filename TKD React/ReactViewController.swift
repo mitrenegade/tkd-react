@@ -21,13 +21,17 @@ class ReactViewController: UIViewController {
     
     var timer: Timer?
     var startTime: Date?
+    var paused: Bool = false
     
     @IBOutlet weak var button: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // make sure label is the correct size
+        self.labelTime.sizeToFit()
+        self.labelTime.center = CGPoint(x: self.labelTime.superview!.frame.size.width/2, y: self.labelTime.superview!.frame.size.height/2)
+        
         //request microphone permission
         
         //Checks if account already exists for device, creates anonymous account if needed for read/write access
@@ -52,12 +56,16 @@ class ReactViewController: UIViewController {
             self.stop()
         }
         else {
-            self.start()
+            if paused {
+                self.showOptions()
+            }
+            else {
+                self.start()
+            }
         }
     }
 
     func start() {
-        startTime = Date()
         if #available(iOS 10.0, *) {
             self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (timer) in
                 self.refresh()
@@ -66,7 +74,6 @@ class ReactViewController: UIViewController {
             // Fallback on earlier versions
             self.timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(refresh), userInfo: nil, repeats: true)
         }
-        self.timer?.fire()
         
         // create CSV writer
         DataManager.sharedInstance.start()
@@ -79,7 +86,11 @@ class ReactViewController: UIViewController {
         
         // start cue timer
         cueManager.start()
-        
+
+        // start timer
+        startTime = Date()
+        self.timer?.fire()
+
         self.button.setTitle("STOP", for: .normal)
     }
     
@@ -98,6 +109,15 @@ class ReactViewController: UIViewController {
         self.labelCount.text = "\(self.cueManager.elapsed)"
     }
     
+    func reset() {
+        self.button.setTitle("START", for: .normal)
+        self.labelTime.text = "0"
+        self.paused = false
+        
+        self.cueManager.elapsed = 0
+        self.labelCount.text = "\(self.cueManager.elapsed)"
+    }
+    
     func stop() {
         self.timer?.invalidate()
         self.timer = nil
@@ -108,6 +128,37 @@ class ReactViewController: UIViewController {
         
         DataManager.sharedInstance.stop()
         
+        paused = true
+        self.button.setTitle("OPTIONS", for: .normal)
+        
+        self.showOptions()
+    }
+    
+    func showOptions() {
+        let alert = UIAlertController(title: "Session ended", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Save and send data", style: .default, handler: { (action) in
+            // continue
+            self.saveData(completion: { (success, paths) in
+                if success {
+                    self.sendData(paths: paths)
+                }
+                else {
+                    self.simpleAlert("Error uploading data", message: "Please click PAUSED button to try again")
+                }
+            })
+        }))
+        alert.addAction(UIAlertAction(title: "Discard session", style: .default, handler: { (action) in
+            // discard
+            self.reset()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
+            // return to session, but not unpause
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func saveData(completion: @escaping ((Bool, [URL])->Void)) {
+    
         guard let dataPath = DataManager.sharedInstance.filepath else {
             self.simpleAlert("Invalid data path", message: "Could not load path for data")
             return
@@ -117,19 +168,8 @@ class ReactViewController: UIViewController {
             return
         }
         
-        let vc = UIActivityViewController(activityItems: [dataPath, audioPath], applicationActivities: [])
-        
-        vc.excludedActivityTypes = [
-            UIActivityType.assignToContact,
-            UIActivityType.saveToCameraRoll,
-            UIActivityType.postToFlickr,
-            UIActivityType.postToVimeo,
-            UIActivityType.postToTencentWeibo,
-            UIActivityType.postToTwitter,
-            UIActivityType.postToFacebook,
-            //UIActivityType.openInIBooks
-        ]
-        present(vc, animated: true, completion: nil)
+        var successCount = 0
+        var errorCount = 0
 
         //Firebase
         let csvString = DataManager.sharedInstance.csvString
@@ -147,6 +187,10 @@ class ReactViewController: UIViewController {
                 // Metadata contains file metadata such as size, content-type, and download URL.
                 let downloadURL = metadata!.downloadURL()
                 sessionRef.child("csvLink").setValue("\(downloadURL!)")
+                successCount += 1
+                if successCount == 2 {
+                    completion(true, [dataPath, audioPath])
+                }
             }
         }
         
@@ -159,9 +203,29 @@ class ReactViewController: UIViewController {
                 // Metadata contains file metadata such as size, content-type, and download URL.
                 let downloadURL = metadata!.downloadURL()
                 sessionRef.child("audioLink").setValue("\(downloadURL!)")
+                successCount += 1
+                if successCount == 2 {
+                    completion(true, [dataPath, audioPath])
+                }
             }
         }
         
-        self.button.setTitle("START", for: .normal)
+    }
+    
+    func sendData(paths: [URL]) {
+        let vc = UIActivityViewController(activityItems: paths, applicationActivities: [])
+        
+        vc.excludedActivityTypes = [
+            UIActivityType.assignToContact,
+            UIActivityType.saveToCameraRoll,
+            UIActivityType.postToFlickr,
+            UIActivityType.postToVimeo,
+            UIActivityType.postToTencentWeibo,
+            UIActivityType.postToTwitter,
+            UIActivityType.postToFacebook,
+            //UIActivityType.openInIBooks
+        ]
+        present(vc, animated: true, completion: nil)
+
     }
 }
