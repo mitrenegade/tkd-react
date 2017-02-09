@@ -28,7 +28,10 @@ class ReactViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // make sure label is the correct size
+        self.labelTime.sizeToFit()
+        self.labelTime.center = CGPoint(x: self.labelTime.superview!.frame.size.width/2, y: self.labelTime.superview!.frame.size.height/2)
+        
         //request microphone permission
         
         //Checks if account already exists for device, creates anonymous account if needed for read/write access
