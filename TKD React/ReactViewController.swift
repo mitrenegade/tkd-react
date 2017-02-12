@@ -23,6 +23,7 @@ class ReactViewController: UIViewController {
     var startTime: Date?
     var paused: Bool = false
     var saved: Bool = false
+    var timeElapsedSincePause: TimeInterval = 0 // tracks previous time after a pause/resume
     
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var savingOverlay: UIView!
@@ -55,7 +56,7 @@ class ReactViewController: UIViewController {
     
     @IBAction func didClickButton(_ sender: AnyObject?) {
         if self.timer != nil {
-            self.stop()
+            self.pause()
         }
         else {
             if paused {
@@ -77,17 +78,22 @@ class ReactViewController: UIViewController {
             self.timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(refresh), userInfo: nil, repeats: true)
         }
         
-        // create CSV writer
-        DataManager.sharedInstance.start()
-
-        // start recording motion
-        motionManager.start()
-        
-        // start recording audio
-        recordingManager.start()
-        
-        // start cue timer
-        cueManager.start()
+        if self.paused {
+            print("resuming")
+        }
+        else {
+            // create CSV writer
+            DataManager.sharedInstance.start()
+            
+            // start recording motion
+            motionManager.start()
+            
+            // start recording audio
+            recordingManager.start()
+            
+            // start cue timer
+            cueManager.start()
+        }
 
         // start timer
         self.labelTime.textAlignment = .left // to eliminate jitter
@@ -112,20 +118,30 @@ class ReactViewController: UIViewController {
         self.labelCount.text = "\(self.cueManager.elapsed)"
     }
     
+    func resume() {
+        self.saved = false // new data will be added so must resave
+        self.start()
+    }
+    
     func reset() {
         self.button.setTitle("START", for: .normal)
         self.labelTime.text = "0"
         self.labelTime.textAlignment = .center // number is now 0
         self.paused = false
         self.saved = false
+        self.timeElapsedSincePause = 0
         
         self.cueManager.elapsed = 0
         self.labelCount.text = "\(self.cueManager.elapsed)"
     }
     
-    func stop() {
+    func pause() {
+        if let startTime = self.startTime {
+            self.timeElapsedSincePause += Date().timeIntervalSince(startTime)
+        }
         self.timer?.invalidate()
         self.timer = nil
+        self.startTime = nil
         
         cueManager.stop()
         recordingManager.stop()
@@ -168,6 +184,10 @@ class ReactViewController: UIViewController {
                     }
                 })
             }
+        }))
+        alert.addAction(UIAlertAction(title: "Resume session", style: .default, handler: { (action) in
+            // resume
+            self.resume()
         }))
         alert.addAction(UIAlertAction(title: "Discard session", style: .default, handler: { (action) in
             // discard
