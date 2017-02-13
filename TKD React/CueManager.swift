@@ -18,17 +18,21 @@ class CueManager: NSObject {
     
     var timer: Timer?
     var startTime: Date?
+    var startDelay: TimeInterval = 5 // first tick occurs instantly after timer starts, so delay for 5 seconds
 
     func start() {
         isPlaying = true
         loops = SettingsManager.instance.numberOfCues
-        elapsed = 0
-        if SettingsManager.instance.randomizedIntervals {
-            self.startRandomIntervals()
-        }
-        else {
-            self.startRegularIntervals()
-        }
+        
+        let when = DispatchTime.now() + startDelay
+        DispatchQueue.main.asyncAfter(deadline: when, execute: {
+            if SettingsManager.instance.randomizedIntervals {
+                self.startRandomIntervals()
+            }
+            else {
+                self.startRegularIntervals()
+            }
+        })
     }
     
     func startRegularIntervals() {
@@ -37,9 +41,11 @@ class CueManager: NSObject {
             self.timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { (timer) in
                 self.tick()
             })
+            self.tick()
         } else {
             // Fallback on earlier versions
             self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(tick), userInfo: nil, repeats: true)
+            self.tick()
         }
     }
     
@@ -104,5 +110,15 @@ class CueManager: NSObject {
         self.timer?.invalidate()
         self.timer = nil
         startTime = nil
+    }
+    
+    func resume(startDelay: TimeInterval) {
+        // TODO: calculate time left from last timer
+        self.startDelay = startDelay
+        self.start()
+    }
+    
+    func reset() {
+        elapsed = 0
     }
 }

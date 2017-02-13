@@ -80,6 +80,17 @@ class ReactViewController: UIViewController {
         
         if self.paused {
             print("resuming")
+            DataManager.sharedInstance.resume() // doesn't actually do anything
+            
+            motionManager.resume() // same as start()
+            
+            recordingManager.resume() // continues recording after pause
+            
+            var secondsToNextCue = self.timeElapsedSincePause
+            while secondsToNextCue > 5 {
+                secondsToNextCue -= 5
+            }
+            cueManager.resume(startDelay: 5 - secondsToNextCue)
         }
         else {
             // create CSV writer
@@ -107,7 +118,7 @@ class ReactViewController: UIViewController {
         if let start = startTime {
             let df = DateFormatter()
             df.dateFormat = "mm:ss:SS"
-            let interval = Date().timeIntervalSince(start)
+            let interval = Date().timeIntervalSince(start) + timeElapsedSincePause
             let date = Date(timeIntervalSinceReferenceDate: interval)
             self.labelTime.text = df.string(from: date)
         }
@@ -133,6 +144,17 @@ class ReactViewController: UIViewController {
         
         self.cueManager.elapsed = 0
         self.labelCount.text = "\(self.cueManager.elapsed)"
+        
+        // clear saved CSV
+        DataManager.sharedInstance.reset()
+        
+        // motion manager doesn't need a real reset
+        motionManager.reset()
+        
+        // calls stop on audio recorder
+        recordingManager.reset()
+        
+        cueManager.reset()
     }
     
     func pause() {
@@ -172,6 +194,9 @@ class ReactViewController: UIViewController {
                 self.sendData(paths: paths)
             }
             else {
+                // TODO: is this needed?
+                self.recordingManager.stop()
+                
                 self.savingOverlay.isHidden = false
                 self.saveData(completion: { (success, paths) in
                     self.savingOverlay.isHidden = true

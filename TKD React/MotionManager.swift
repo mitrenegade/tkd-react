@@ -33,4 +33,12 @@ class MotionManager: NSObject {
         motionKit.stopDeviceMotionUpdates()
         motionKit.stopmagnetometerUpdates()
     }
+    
+    func reset() {
+        // doesn't do anything
+    }
+    
+    func resume() {
+        self.start()
+    }
 }

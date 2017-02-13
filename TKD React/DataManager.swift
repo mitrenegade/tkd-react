@@ -56,4 +56,14 @@ class DataManager: NSObject {
             print("\(error)")
         }
     }
+    
+    func resume() {
+        // do nothing
+        assert(self.filepath != nil, "uh oh: resuming data manager failed")
+    }
+    
+    func reset() {
+        self.csvString = ""
+        self.filepath = nil
+    }
 }
