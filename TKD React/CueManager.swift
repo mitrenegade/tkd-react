@@ -24,15 +24,15 @@ class CueManager: NSObject {
         isPlaying = true
         loops = SettingsManager.instance.numberOfCues
         
-        let when = DispatchTime.now() + startDelay
-        DispatchQueue.main.asyncAfter(deadline: when, execute: {
-            if SettingsManager.instance.randomizedIntervals {
-                self.startRandomIntervals()
-            }
-            else {
+        if SettingsManager.instance.randomizedIntervals {
+            self.startRandomIntervals()
+        }
+        else {
+            let when = DispatchTime.now() + startDelay
+            DispatchQueue.main.asyncAfter(deadline: when, execute: {
                 self.startRegularIntervals()
-            }
-        })
+            })
+        }
     }
     
     func startRegularIntervals() {
@@ -113,8 +113,13 @@ class CueManager: NSObject {
     }
     
     func resume(startDelay: TimeInterval) {
-        // TODO: calculate time left from last timer
-        self.startDelay = startDelay
+        // startDelay is used to calculate time left from last timer. if the timer was stopped at 3 seconds, we want the first cue to start 2 seconds later. unfortunately this ties it to the timer in ReactViewController a little too much.
+        if SettingsManager.instance.randomizedIntervals {
+            self.startDelay = delay()
+        }
+        else {
+            self.startDelay = startDelay
+        }
         self.start()
     }
     
