@@ -18,7 +18,7 @@ class CueManager: NSObject {
     
     var timer: Timer?
     var startTime: Date?
-    var startDelay: TimeInterval = 5 // first tick occurs instantly after timer starts, so delay for 5 seconds
+    var startDelay: TimeInterval = 4.5 // first tick occurs instantly after timer starts, so delay for 5 seconds
 
     func start() {
         isPlaying = true
