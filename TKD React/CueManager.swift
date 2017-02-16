@@ -18,16 +18,20 @@ class CueManager: NSObject {
     
     var timer: Timer?
     var startTime: Date?
+    var startDelay: TimeInterval = 4.5 // first tick occurs instantly after timer starts, so delay for 5 seconds
 
     func start() {
         isPlaying = true
         loops = SettingsManager.instance.numberOfCues
-        elapsed = 0
+        
         if SettingsManager.instance.randomizedIntervals {
             self.startRandomIntervals()
         }
         else {
-            self.startRegularIntervals()
+            let when = DispatchTime.now() + startDelay
+            DispatchQueue.main.asyncAfter(deadline: when, execute: {
+                self.startRegularIntervals()
+            })
         }
     }
     
@@ -37,9 +41,11 @@ class CueManager: NSObject {
             self.timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { (timer) in
                 self.tick()
             })
+            self.tick()
         } else {
             // Fallback on earlier versions
             self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(tick), userInfo: nil, repeats: true)
+            self.tick()
         }
     }
     
@@ -81,9 +87,10 @@ class CueManager: NSObject {
     func tick() {
         print("TICK!")
         self.elapsed += 1
-        let sound = NSDataAsset(name: "tap-crisp")
+//        let sound = NSDataAsset(name: "beep-01a")
+        let url = Bundle.main.url(forResource: "beep-01a", withExtension: "mp3")!
         do {
-            try self.audioPlayer = AVAudioPlayer(data: (sound?.data)!, fileTypeHint: AVFileTypeAIFF)
+            try self.audioPlayer = AVAudioPlayer(contentsOf: url)
             self.audioPlayer.play()
         } catch {
             print("could not play sound")
@@ -104,5 +111,20 @@ class CueManager: NSObject {
         self.timer?.invalidate()
         self.timer = nil
         startTime = nil
+    }
+    
+    func resume(startDelay: TimeInterval) {
+        // startDelay is used to calculate time left from last timer. if the timer was stopped at 3 seconds, we want the first cue to start 2 seconds later. unfortunately this ties it to the timer in ReactViewController a little too much.
+        if SettingsManager.instance.randomizedIntervals {
+            self.startDelay = delay()
+        }
+        else {
+            self.startDelay = startDelay
+        }
+        self.start()
+    }
+    
+    func reset() {
+        elapsed = 0
     }
 }

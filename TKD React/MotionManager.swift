@@ -21,9 +21,9 @@ class MotionManager: NSObject {
             let absY = abs(y)
             let absZ = abs(z)
             
-            let average = Double((absX + absY + absZ) / 3)
+            let magnitude = Double(sqrt(absX*absX + absY*absY + absZ*absZ))
             
-            DataManager.sharedInstance.logMotion(average)
+            DataManager.sharedInstance.logMotion(magnitude)
         }
     }
 
@@ -32,5 +32,13 @@ class MotionManager: NSObject {
         motionKit.stopGyroUpdates()
         motionKit.stopDeviceMotionUpdates()
         motionKit.stopmagnetometerUpdates()
+    }
+    
+    func reset() {
+        // doesn't do anything
+    }
+    
+    func resume() {
+        self.start()
     }
 }

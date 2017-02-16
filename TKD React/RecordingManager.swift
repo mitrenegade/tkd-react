@@ -45,6 +45,18 @@ class RecordingManager: NSObject {
     }
     
     func stop() {
+        audioRecorder.pause()
+    }
+    
+    func resume() {
+        // TODO: does this save to the same file?
+        audioRecorder.prepareToRecord()
+        audioRecorder.record()
+    }
+    
+    func reset() {
+        self.filepath = nil
         audioRecorder.stop()
+        audioRecorder = nil
     }
 }
