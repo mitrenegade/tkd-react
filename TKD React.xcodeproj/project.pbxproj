@@ -23,6 +23,7 @@
 		8E56838A1E3D0341000B6FCF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5683891E3D0341000B6FCF /* Utils.swift */; };
 		C182E95B1E35522F0035F328 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C182E95A1E35522F0035F328 /* GoogleService-Info.plist */; };
 		C182E95D1E3552600035F328 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C182E95C1E3552600035F328 /* Global.swift */; };
+		C6CFD1681E562E390057AA9E /* beep-01a.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C6CFD1671E562E390057AA9E /* beep-01a.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		AC77EC6C5CE5EB092C0A60FB /* Pods-TKD React.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TKD React.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TKD React/Pods-TKD React.debug.xcconfig"; sourceTree = "<group>"; };
 		C182E95A1E35522F0035F328 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C182E95C1E3552600035F328 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		C6CFD1671E562E390057AA9E /* beep-01a.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "beep-01a.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				8E56838B1E3D070C000B6FCF /* Managers */,
 				8E4E10CA1E2DA1BF00A6330D /* SettingsViewController.swift */,
 				8E5683781E3CE3D1000B6FCF /* MotionKit.swift */,
+				C6CFD1671E562E390057AA9E /* beep-01a.mp3 */,
 				8E4E10CF1E2DA1BF00A6330D /* Assets.xcassets */,
 				8E4E10D11E2DA1BF00A6330D /* LaunchScreen.storyboard */,
 				8E4E10D41E2DA1BF00A6330D /* Info.plist */,
@@ -190,6 +193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6CFD1681E562E390057AA9E /* beep-01a.mp3 in Resources */,
 				8E4E10D31E2DA1BF00A6330D /* LaunchScreen.storyboard in Resources */,
 				C182E95B1E35522F0035F328 /* GoogleService-Info.plist in Resources */,
 				8E4E10D01E2DA1BF00A6330D /* Assets.xcassets in Resources */,

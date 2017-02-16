@@ -87,9 +87,10 @@ class CueManager: NSObject {
     func tick() {
         print("TICK!")
         self.elapsed += 1
-        let sound = NSDataAsset(name: "tap-crisp")
+//        let sound = NSDataAsset(name: "beep-01a")
+        let url = Bundle.main.url(forResource: "beep-01a", withExtension: "mp3")!
         do {
-            try self.audioPlayer = AVAudioPlayer(data: (sound?.data)!, fileTypeHint: AVFileTypeAIFF)
+            try self.audioPlayer = AVAudioPlayer(contentsOf: url)
             self.audioPlayer.play()
         } catch {
             print("could not play sound")
