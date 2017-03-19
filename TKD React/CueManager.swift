@@ -36,6 +36,8 @@ class CueManager: NSObject {
     }
     
     func startRegularIntervals() {
+        guard isPlaying else { return } // if resume and then pause are clicked before the timer is initiated, then startRegularIntervals gets called due to the dispatch call
+        
         startTime = Date()
         if #available(iOS 10.0, *) {
             self.timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { (timer) in
@@ -86,6 +88,8 @@ class CueManager: NSObject {
     
     func tick() {
         print("TICK!")
+        guard isPlaying else { return } // make sure not playing
+        
         self.elapsed += 1
 //        let sound = NSDataAsset(name: "beep-01a")
         let url = Bundle.main.url(forResource: "beep-01a", withExtension: "mp3")!
