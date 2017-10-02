@@ -38,10 +38,10 @@ class ReactViewController: UIViewController {
         //request microphone permission
         
         //Checks if account already exists for device, creates anonymous account if needed for read/write access
-        if let user = FIRAuth.auth()?.currentUser {
+        if let user = Auth.auth().currentUser {
             print("JMD: User logged in with uid: " + user.uid + " and anon: \(user.isAnonymous)")
         } else {
-            FIRAuth.auth()?.signInAnonymously() { (user, error) in
+            Auth.auth().signInAnonymously() { (user, error) in
                 if error != nil {
                     print("JMD: signInAnonomously error: \(error as Any)")
                     ref.child("users").child(user!.uid)
@@ -247,7 +247,7 @@ class ReactViewController: UIViewController {
         
         let csvRef = storageRef.child("\(filenameBase).csv")
         
-        _ = csvRef.putFile(dataPath, metadata: nil) { metadata, error in
+        _ = csvRef.putFile(from: dataPath, metadata: nil) { metadata, error in
             if let error = error {
                 print(error)
                 errorCount += 1
@@ -267,7 +267,7 @@ class ReactViewController: UIViewController {
         
         let audioRef = storageRef.child("\(filenameBase).wav")
         
-        _ = audioRef.putFile(audioPath, metadata: nil) { metadata, error in
+        _ = audioRef.putFile(from: audioPath, metadata: nil) { metadata, error in
             if let error = error {
                 print(error)
                 if successCount + errorCount == 2 {
