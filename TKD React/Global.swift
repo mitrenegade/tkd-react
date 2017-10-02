@@ -12,6 +12,6 @@ import FirebaseDatabase
 import FirebaseStorage
 
 
-let ref = FIRDatabase.database().reference()
-let storage = FIRStorage.storage()
+let ref = Database.database().reference()
+let storage = Storage.storage()
 let storageRef = storage.reference()
